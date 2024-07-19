@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeaksHub Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .countdown {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>BeaksHub Countdown</h1>
+    <div class="countdown" id="countdown"></div>
+    <script>
+        function countdown() {
+            const targetDate = new Date('September 4, 2024 00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            const months = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((timeLeft % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = months + "m " + days + "d " + hours + "h " + seconds + "s";
+
+            if (timeLeft < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }
+
+        const x = setInterval(countdown, 1000);
+    </script>
+</body>
+</html>
